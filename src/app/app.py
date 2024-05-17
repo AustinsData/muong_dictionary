@@ -1,17 +1,19 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_mail import Mail, Message
 import csv
+import os
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 
 # Configure Flask-Mail
-app.config['MAIL_SERVER'] = 'smtp.example.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = True
-app.config['MAIL_USERNAME'] = 'your_email@example.com'
-app.config['MAIL_PASSWORD'] = 'your_email_password'
-app.config['MAIL_DEFAULT_SENDER'] = 'your_email@example.com'
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_USERNAME')
 
 mail = Mail(app)  # Define the Mail instance
 
@@ -58,7 +60,8 @@ def contact():
         message = request.form['message']
         
         # Send email
-        msg = Message('Contact Us Form Submission',
+        msg = Message(subject='Contact Us Form Submission',
+                      sender=os.environ.get('MAIL_USERNAME'),
                       recipients=['austintanng@gmail.com'])
         msg.body = f'Name: {name}\nEmail: {email}\nMessage: {message}'
         mail.send(msg)
