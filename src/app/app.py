@@ -21,7 +21,10 @@ def search_data(query, phrase=False):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    with open('./data/progress_data.csv', 'r', encoding='utf-8') as file:
+        reader = csv.DictReader(file)
+        rows = list(reader)
+    return render_template('index.html', progress_data=rows)
 
 @app.route('/search')
 def search():

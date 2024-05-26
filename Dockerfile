@@ -12,6 +12,8 @@ COPY ./src ./src
 
 COPY ./src/app/data/data.csv ./data/data.csv
 
+COPY ./src/app/data/progress_data.csv ./data/progress_data.csv
+
 EXPOSE 8080
 
 CMD ["python", "./src/app/app.py"]

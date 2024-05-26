@@ -6,7 +6,7 @@ https://muong-dictionary.fly.dev/
 ---
 | Phase  | Letters | Progress |
 | ------------- | ------------- | ------------- |
-| 1  | A, B, C |  50%  |
+| 1  | A, B, C |  33%  |
 | 2  | D, Đ  | 0%  |
 | 3  | E, G, H, I  | 0%  |
 | 4  | K, L | 0%  |
